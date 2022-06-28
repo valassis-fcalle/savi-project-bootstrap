@@ -20,6 +20,7 @@ async function prepare() {
 
   await $`npm init -y`;
   await $`git init -b master`;
+  await $`git remote add origin git@github.com:valassis-fcalle/savi-project-bootstrap-demo.git`;
   fs.writeFileSync(".gitignore", "node_modules");
 }
 
@@ -193,7 +194,7 @@ async function prepareSemanticRelease() {
         // "@semantic-release/git",
       ],
       repositoryUrl:
-        "git@github.com:valassis-fcalle/savi-project-bootstrap.git",
+        "git@github.com:valassis-fcalle/savi-project-bootstrap-demo.git",
     },
     { spaces: 2 }
   );
