@@ -187,6 +187,7 @@ async function prepareSemanticRelease() {
   fs.writeJSONSync(
     ".releaserc.json",
     {
+      ci: false,
       branches: ["master"],
       plugins: [
         "@semantic-release/commit-analyzer",
