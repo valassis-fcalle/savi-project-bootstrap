@@ -40,6 +40,7 @@ async function installDependencies() {
     "husky",
     "lint-staged",
     "markdownlint",
+    "markdownlint-cli",
     "nodemon",
     "prettier",
     "semantic-release",
@@ -160,7 +161,8 @@ async function prepareLintStaged() {
     "./.lintstagedrc",
     {
       "*": "cspell --no-summary --no-progress",
-      "*.{js,jsx,ts,tsx,md,html,css}": ["prettier --write", "eslint --fix"],
+      "*.md": "markdown-lint --fix --typograph",
+      "*.{js,jsx,ts,tsx,html,css}": ["prettier --write", "eslint --fix"],
       "*.{png,jpeg,jpg,gif,svg}": "imagemin-lint-staged",
       "*.scss": ["postcss --config path/to/your/config --replace", "stylelint"],
     },
