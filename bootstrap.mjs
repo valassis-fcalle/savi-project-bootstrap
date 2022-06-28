@@ -90,7 +90,7 @@ async function prepareCommitLint() {
 . "\$(dirname "\$0")/_/husky.sh"
 
 npx --no -- commitlint --edit "\${1}"
-npx --no -- cspell --no-summary --no-progress ${1}`
+npx --no -- cspell --no-summary --no-progress "\${1}"`
   );
   await $`chmod a+x ./.husky/commit-msg`;
 }
