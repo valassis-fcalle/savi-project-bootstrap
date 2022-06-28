@@ -67,6 +67,7 @@ async function prepareSpellChecker() {
         "commitlint",
         "fcalle",
         "imagemin",
+        "markdownlint",
         "parens",
         "postcss",
         "savi",
@@ -162,7 +163,7 @@ async function prepareLintStaged() {
     "./.lintstagedrc",
     {
       "*": "cspell --no-summary --no-progress",
-      "*.md": "markdown-lint --fix --typograph",
+      "*.md": "markdownlint --fix",
       "*.{js,jsx,ts,tsx,html,css}": ["prettier --write", "eslint --fix"],
       "*.{png,jpeg,jpg,gif,svg}": "imagemin-lint-staged",
       "*.scss": ["postcss --config path/to/your/config --replace", "stylelint"],
