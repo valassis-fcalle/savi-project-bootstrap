@@ -191,8 +191,9 @@ async function prepareSemanticRelease() {
       plugins: [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
+        "@semantic-release/changelog",
         // "@semantic-release/npm",
-        // "@semantic-release/git",
+        "@semantic-release/git",
       ],
       repositoryUrl:
         "git@github.com:valassis-fcalle/savi-project-bootstrap-demo.git",
