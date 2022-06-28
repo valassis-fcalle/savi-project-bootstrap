@@ -163,7 +163,7 @@ async function prepareLintStaged() {
     "./.lintstagedrc",
     {
       "*": "cspell --no-summary --no-progress",
-      "*.md": "markdownlint --fix",
+      "*.md": "markdownlint --fix --ignore CHANGELOG.md",
       "*.{js,jsx,ts,tsx,html,css}": ["prettier --write", "eslint --fix"],
       "*.{png,jpeg,jpg,gif,svg}": "imagemin-lint-staged",
       "*.scss": ["postcss --config path/to/your/config --replace", "stylelint"],
@@ -193,7 +193,12 @@ async function prepareSemanticRelease() {
         "@semantic-release/release-notes-generator",
         "@semantic-release/changelog",
         // "@semantic-release/npm",
-        "@semantic-release/git",
+        [
+          "@semantic-release/git",
+          {
+            message: "chore(release): ${nextRelease.version}",
+          },
+        ],
       ],
       repositoryUrl:
         "git@github.com:valassis-fcalle/savi-project-bootstrap-demo.git",
