@@ -1,15 +1,8 @@
 #!/usr/bin/env zx
 
 import { $, cd, chalk, fs } from "zx";
-
-$.verbose = !!process.env.DEBUG || false;
-
-const PROJECT_FOLDER = "savi-project-bootstrap";
-
-let step = 0;
-function printStep() {
-  return chalk.red.bold(`STEP ${++step}: `);
-}
+import { PROJECT_FOLDER } from "./utils/env.mjs";
+import { printStep } from "./utils/steps.mjs";
 
 async function prepare() {
   console.log(printStep(), chalk.white("Preparing ..."));
@@ -99,10 +92,7 @@ npx --no -- cspell --no-summary --no-progress "\${1}"`
 }
 
 async function prepareLinter() {
-  console.log(
-    chalk.red.bold("STEP 6:"),
-    chalk.white("Setting up eslint + airbnb ...")
-  );
+  console.log(printStep(), chalk.white("Setting up eslint + airbnb ..."));
   fs.ensureFileSync("./.eslintrc.js");
   fs.writeFileSync(
     "./.eslintrc.js",
