@@ -6,10 +6,10 @@ import { printStep } from "./utils/steps.mjs";
 
 cd(PROJECT_FOLDER);
 
-console.log(printStep(), "Installing new dependencies ...");
+printStep("Installing new dependencies ...");
 await $`npm install -D commitlint-plugin-jira-rules commitlint-config-jira`;
 
-console.log(printStep(), "Updating configuration ...");
+printStep("Updating configuration ...");
 fs.writeFileSync(
   "commitlint.config.js",
   `module.exports = {

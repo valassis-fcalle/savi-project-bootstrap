@@ -1,11 +1,11 @@
 #!/usr/bin/env zx
 
-import { $, cd, chalk, fs } from "zx";
+import { $, cd, fs } from "zx";
 import { PROJECT_FOLDER } from "./utils/env.mjs";
 import { printStep } from "./utils/steps.mjs";
 
 async function prepare() {
-  console.log(printStep(), chalk.white("Preparing ..."));
+  printStep("Preparing ...");
   await $`rm -rf ./${PROJECT_FOLDER}`;
   fs.mkdirSync(`./${PROJECT_FOLDER}`);
 
@@ -18,7 +18,7 @@ async function prepare() {
 }
 
 async function installDependencies() {
-  console.log(printStep(), chalk.white("Installing dependencies..."));
+  printStep("Installing dependencies...");
   const devDependencies = [
     "@commitlint/cli",
     "@commitlint/config-conventional",
@@ -43,13 +43,12 @@ async function installDependencies() {
 }
 
 async function prepareHusky() {
-  console.log(printStep(), chalk.white("Setting up semantic-release..."));
-
+  printStep("Setting up semantic-release...");
   await $`npx --no-install husky install`;
 }
 
 async function prepareSpellChecker() {
-  console.log(printStep(), chalk.white("Setting up cSpell ..."));
+  printStep("Setting up cSpell ...");
   fs.ensureFileSync("./cspell.json");
   fs.writeJSONSync(
     "./cspell.json",
@@ -73,7 +72,7 @@ async function prepareSpellChecker() {
 }
 
 async function prepareCommitLint() {
-  console.log(printStep(), chalk.white("Setting up commitlint..."));
+  printStep("Setting up commitlint...");
   fs.ensureFileSync("commitlint.config.js");
   fs.writeFileSync(
     "commitlint.config.js",
@@ -92,7 +91,7 @@ npx --no -- cspell --no-summary --no-progress "\${1}"`
 }
 
 async function prepareLinter() {
-  console.log(printStep(), chalk.white("Setting up eslint + airbnb ..."));
+  printStep("Setting up eslint + airbnb ...");
   fs.ensureFileSync("./.eslintrc.js");
   fs.writeFileSync(
     "./.eslintrc.js",
@@ -128,7 +127,7 @@ build/*
 }
 
 async function prepareFormatter() {
-  console.log(printStep(), chalk.white("Setting up prettier..."));
+  printStep("Setting up prettier...");
   fs.ensureFileSync("./.prettierrc");
   fs.writeFileSync(
     "./.prettierrc",
@@ -147,7 +146,7 @@ async function prepareFormatter() {
 }
 
 async function prepareLintStaged() {
-  console.log(printStep(), chalk.white("Setting up lint-staged..."));
+  printStep("Setting up prettier...");
   fs.ensureFileSync("./.lintstagedrc");
   fs.writeJSONSync(
     "./.lintstagedrc",
@@ -172,8 +171,7 @@ npx lint-staged`
 }
 
 async function prepareSemanticRelease() {
-  console.log(printStep(), chalk.white("Setting semantic release ..."));
-
+  printStep("Setting up semantic release ...");
   fs.writeJSONSync(
     ".releaserc.json",
     {
