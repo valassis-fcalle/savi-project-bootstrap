@@ -57,6 +57,7 @@ async function prepareSpellChecker() {
       words: [
         "capi",
         "commitlint",
+        "eudev",
         "fcalle",
         "imagemin",
         "markdownlint",
@@ -76,7 +77,17 @@ async function prepareCommitLint() {
   fs.ensureFileSync("commitlint.config.js");
   fs.writeFileSync(
     "commitlint.config.js",
-    `module.exports = { extends: ['@commitlint/config-conventional'] };`
+    `module.exports = {
+  extends: ['@commitlint/config-conventional'],
+  parserPreset: {
+    parserOpts: {
+      issuePrefixes: ['EUDEV-']
+    }
+  },
+  rules: {
+    'references-empty': [2, 'never'],
+  },
+};`
   );
   fs.ensureFileSync("./.husky/commit-msg");
   fs.writeFileSync(
